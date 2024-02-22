@@ -1,40 +1,38 @@
-import React from 'react'
-import { Stack } from 'expo-router'
+import React, { useEffect } from 'react';
+import { useRouter } from 'expo-router';
+import { Slot } from 'expo-router';
+import useAuthStore from '../store/AuthStore';
 
-// other screens are coins, orders, profile, contactus, coupons
+const InitialLayout = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const initializeState = async () => {
+      try {
+        await useAuthStore.getState().checkLoginStatus();
+        const isLoggedIn = useAuthStore.getState().isLoggedIn; // Get the updated value
+
+        console.log(isLoggedIn);
+
+        if (isLoggedIn) {
+          router.push('/home');
+        } else {
+          router.replace('/(auth)/Signup');
+        }
+      } catch (error) {
+        console.error('Error initializing state:', error);
+      }
+    };
+
+    initializeState();
+  }, [router]);
+
+  return <Slot />;
+};
 
 const RootLayout = () => {
-  return (
-    <Stack>
-        <Stack.Screen name="(tabs)" options={{
-          headerShown: false 
-        }}/>
-        <Stack.Screen name="(account-menu)/(address)/address" options={{
-          headerShown: true,
-          title: 'ADDRESS'
-        }}/>
-        <Stack.Screen name="(account-menu)/(profile)/profile" options={{
-          headerShown: true,
-          title: 'PROFILE'
-        }}/>
-        <Stack.Screen name="(account-menu)/(orders)/orders" options={{
-          headerShown: true,
-          title: 'ORDERS'
-        }}/>
-        <Stack.Screen name="(account-menu)/(coupons)/coupons" options={{
-          headerShown: true,
-          title: 'COUPONS'
-        }}/>
-        <Stack.Screen name="(account-menu)/(contactus)/contactus" options={{
-          headerShown: true,
-          title: 'CONTACT US'
-        }}/>
-        <Stack.Screen name="(account-menu)/(coins)/coins" options={{
-          headerShown: true,
-          title: 'ADEEGO COINS'
-        }}/>
-    </Stack>
-  )
+  return <InitialLayout />
 }
 
-export default RootLayout
+// Export RootLayout
+export default RootLayout;

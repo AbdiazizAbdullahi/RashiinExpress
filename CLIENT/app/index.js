@@ -1,18 +1,25 @@
-import { View, Text, Pressable } from 'react-native'
 import React from 'react'
-import { router } from 'expo-router'
+import "react-native-gesture-handler"
+import { View, ActivityIndicator } from 'react-native'
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar'
 
-const AppOpening = () => {
+SplashScreen.preventAutoHideAsync();
+
+export default function InitialScreen() {
+
+  React.useEffect(() => {
+    // Perform some sort of async data or asset fetching.
+    setTimeout(() => {
+      // When all loading is setup, unmount the splash screen component.
+      SplashScreen.hideAsync();
+    }, 1000);
+  }, []);
+
   return (
-    <View>
-        <Pressable onPress={() => {
-            router.push('home')
-        }}>
-            <Text>Redirect to home!</Text>
-        </Pressable>
-      
+    <View >
+      <StatusBar style="light" />
+      <ActivityIndicator size="large" color="#0000ff" />
     </View>
   )
 }
-
-export default AppOpening

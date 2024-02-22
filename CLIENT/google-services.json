@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1038474343982",
+    "project_id": "adeego-6d3be",
+    "storage_bucket": "adeego-6d3be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038474343982:android:99967e2bf31c2e9a6951bf",
+        "android_client_info": {
+          "package_name": "com.adeego_co.Adeego"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDkDoLIS2w4rjtBLKzcR3yZiUGSyvwMOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
